@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.metrics import accuracy_score, balanced_accuracy_score
-from utils import predict_nearest_mean
+from src.evaluation.utils import predict_nearest_mean
 
 
 def get_NMC_accuracies(X_test, y_test, class_prototypes):

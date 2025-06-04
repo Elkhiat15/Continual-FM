@@ -15,3 +15,7 @@ dmf_tasks = {
     "Task3": [4, 6, 3] # ["bkl", "vasc", "akiec"]
 }
 
+
+IN_DIM_PANDERM, OUT_DIM_PANDERM = 1024, 2048
+IN_DIM_DERM, OUT_DIM_DERM = 6144, 10000
+IN_DIM_CLIP, OUT_DIM_CLIP = 768, 1024

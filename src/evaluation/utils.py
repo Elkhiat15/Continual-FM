@@ -3,7 +3,7 @@ from scipy.spatial.distance import euclidean
 from sklearn.preprocessing import StandardScaler
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.decomposition import PCA
-from projection import FrozenRandomProjection
+from src.evaluation.projection import FrozenRandomProjection
 
 def get_prototypes(X_train, y_train):
     class_mean_vectors = {}

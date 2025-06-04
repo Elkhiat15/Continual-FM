@@ -1,7 +1,7 @@
 
 from sklearn.neural_network import MLPClassifier
-from utils import get_task_data
-from evaluation import get_MLP_accuracies
+from src.evaluation.utils import get_task_data
+from src.evaluation.accuracy import get_MLP_accuracies
 
 def train_MLP(tasks, X_train, y_train, X_test, y_test):
     task_models = {}
