@@ -1,6 +1,12 @@
 numpy
 pandas
+matplotlib
 torch
+torchvision
+transformers
 scikit-learn
 scipy
 tqdm
+tensorflow
+huggingface_hub
+Pillow
