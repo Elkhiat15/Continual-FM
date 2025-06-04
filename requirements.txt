@@ -4,3 +4,6 @@ torch
 scikit-learn
 scipy
 tqdm
+tensorflow
+huggingface_hub
+Pillow
