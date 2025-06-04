@@ -3,6 +3,27 @@ Foundation Models as Class-Incremental Learners for Dermatological Image Classif
 
 # Run Experiment Script
 
+## 📦 Setup Instructions
+
+### 1. Create a Virtual Environment
+
+**For macOS/Linux:**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+**For Windows:**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+### 2. Install Dependencies
+After activating the virtual environment, run:
+```bash
+pip install -r requirements.txt
+```
+
 ## 🧪 Script: `run_experiment.py`
 
 ### 🔧 Parameters
