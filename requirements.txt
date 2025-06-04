@@ -3,3 +3,4 @@ pandas
 torch
 scikit-learn
 scipy
+tqdm
