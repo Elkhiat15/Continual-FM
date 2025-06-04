@@ -1,4 +1,4 @@
-# Byte-compiled / optimized / DLL files
+source venv/bin/activate# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
