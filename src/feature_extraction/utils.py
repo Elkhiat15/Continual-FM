@@ -7,6 +7,12 @@ from tqdm import tqdm
 from feature_extractors.derm import DermImageEmbedder
 from feature_extractors.panderm import PanDermImageEmbedder
 from feature_extractors.clip_vit import CLIPImageEmbedder
+from huggingface_hub import login
+
+
+def login_hf(token):
+    login(token)
+    print("Login Successfully!")
 
 def preprocess_image_np(img_path, size=(224, 224), mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]):
     # Open image and convert to RGB
@@ -26,16 +32,6 @@ def preprocess_image_np(img_path, size=(224, 224), mean=[0.5, 0.5, 0.5], std=[0.
     return Image.fromarray(img_np)
 
 
-def get_all_image_paths(root_dir, exts={'.jpg', '.jpeg', '.png', '.bmp', '.tiff'}):
-    image_paths = []
-    for subdir, _, files in os.walk(root_dir):
-        for file in files:
-            if os.path.splitext(file)[1].lower() in exts:
-                full_path = os.path.join(subdir, file)
-                image_paths.append(full_path)
-    return image_paths
-
-
 def get_image_paths(pths_lst, start, end):
     """
     Retrieve all image paths in the directory.
@@ -43,7 +39,7 @@ def get_image_paths(pths_lst, start, end):
     return pths_lst[start:end]
 
 
-def save_embeddings_in_batches_as_csv(image_paths, embedder, batch_size=32, output_csv='embeddings.csv'):
+def save_embeddings_in_batches_as_csv(image_paths, embedder, batch_size=32, output_csv='embeddings.csv', data_name = 'd7p'):
     """
     Save embeddings in batches to prevent loss of progress during long processing.
     Args:
@@ -64,18 +60,16 @@ def save_embeddings_in_batches_as_csv(image_paths, embedder, batch_size=32, outp
         batch_paths = image_paths[start_idx:end_idx]
         batch_embeddings = []
         batch_image_ids = []
-        batch_lesion_ids = []
-        batch_classes = []
         start = time.time()
 
         # Process each image in the batch
         for image_path in batch_paths:
             embedding = embedder.extract_embedding(image_path)
             batch_embeddings.append(embedding.flatten())  # Flatten and cast to np.float32
-            image_id = os.path.basename(image_path).split('.')[0] # For HAM
-            # image_id = image_paths.index(image_path) + 1  # For D7P & DMF
+            image_id = image_paths.index(image_path) + 1  # For D7P & DMF
+            if data_name == 'ham':
+                image_id = os.path.basename(image_path).split('.')[0] # For HAM
             batch_image_ids.append(image_id)
-
 
 
         # Convert the batch to a DataFrame
@@ -95,7 +89,7 @@ def save_embeddings_in_batches_as_csv(image_paths, embedder, batch_size=32, outp
         print(f"Time to compute embeddings for batch {start_idx//batch_size +1}: ", end - start, "seconds")
 
 
-def extract_features(rslt_dict, start, end, batch_size, model_name, output_csv):
+def extract_features(rslt_dict, start, end, batch_size, model_name, data_name, output_csv):
     
     if model_name == 'PanDerm':
         embedder = PanDermImageEmbedder() 
@@ -110,6 +104,6 @@ def extract_features(rslt_dict, start, end, batch_size, model_name, output_csv):
 
     save_embeddings_in_batches_as_csv(
         image_paths, embedder, batch_size=batch_size, 
-        output_csv=output_csv)
+        output_csv=output_csv, data_name=data_name)
     
     
