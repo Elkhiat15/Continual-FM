@@ -1,1 +1,0 @@
-from .derm_data import Derm_Dataset
