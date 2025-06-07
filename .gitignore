@@ -1,5 +1,5 @@
 outputs/*.csv
-
+data/*
 
 
 source venv/bin/activate# Byte-compiled / optimized / DLL files
