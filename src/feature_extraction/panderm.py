@@ -1,6 +1,7 @@
 
 import torch
-from ..utils import preprocess_image_np
+from src.feature_extraction.data_utils import preprocess_image_np
+# from utils import preprocess_image_np
 
 class PanDermImageEmbedder:
     def __init__(self, model, transform, device="cpu"):

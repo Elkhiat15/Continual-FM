@@ -4,32 +4,14 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 from tqdm import tqdm
-from feature_extractors.derm import DermImageEmbedder
-from feature_extractors.panderm import PanDermImageEmbedder
-from feature_extractors.clip_vit import CLIPImageEmbedder
 from huggingface_hub import login
-
+from src.feature_extraction.derm import DermImageEmbedder
+from src.feature_extraction.panderm import PanDermImageEmbedder
+from src.feature_extraction.clip_vit import CLIPImageEmbedder
 
 def login_hf(token):
     login(token)
     print("Login Successfully!")
-
-def preprocess_image_np(img_path, size=(224, 224), mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]):
-    # Open image and convert to RGB
-    img = Image.open(img_path).convert("RGB")
-
-    # Resize image
-    img = img.resize(size, Image.BILINEAR)
-
-    img_np = np.array(img).astype(np.float32) / 255.0  # scale to [0,1]
-
-    # Normalize each channel: (x - mean) / std
-    for c in range(3):
-        img_np[..., c] = (img_np[..., c] - mean[c]) / std[c]
-        
-    img_np = np.clip(img_np * 255.0, 0, 255).astype(np.uint8)
-
-    return Image.fromarray(img_np)
 
 
 def get_image_paths(pths_lst, start, end):

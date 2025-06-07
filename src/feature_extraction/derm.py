@@ -1,7 +1,8 @@
 import tensorflow as tf
 from io import BytesIO
 from huggingface_hub import from_pretrained_keras, login
-from ..utils import preprocess_image_np
+from src.feature_extraction.data_utils import preprocess_image_np
+# from utils import preprocess_image_np
 
 class DermImageEmbedder:
     def __init__(self, model_name="google/derm-foundation", device="cpu"):
