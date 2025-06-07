@@ -1,6 +1,6 @@
 outputs/*.csv
 data/*
-
+PanDerm_Weights/*
 
 source venv/bin/activate# Byte-compiled / optimized / DLL files
 __pycache__/
