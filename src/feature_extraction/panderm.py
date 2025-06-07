@@ -1,12 +1,14 @@
 
 import torch
 from src.feature_extraction.data_utils import preprocess_image_np
+from PanDerm.linear_probe.models.builder import get_encoder
 # from utils import preprocess_image_np
 
 class PanDermImageEmbedder:
-    def __init__(self, model, transform, device="cpu"):
+    def __init__(self, model=None, transform=None, device="cpu"):
         self.device = device
-        self.model, self.transform = model, transform 
+        self.model, self.transform = get_encoder('PanDerm')
+        # self.model, self.transform = model, transform 
         self.model = self.model.to(self.device).eval()
         print(f"PanDerm model loaded on {self.device}")
 
