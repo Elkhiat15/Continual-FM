@@ -1,7 +1,7 @@
 
 import torch
 from src.feature_extraction.data_utils import preprocess_image_np
-from PanDerm.linear_probe.models.builder import get_encoder
+from PanDerm_module.linear_probe.models.builder import get_encoder
 # from utils import preprocess_image_np
 
 class PanDermImageEmbedder:
