@@ -2,7 +2,8 @@ import timm
 from .timm_wrapper import TimmCNNEncoder
 import torch
 from torchvision import transforms
-from models.modeling_finetune import *
+from PanDerm_module.linear_probe.models.modeling_finetune import *
+# from models.modeling_finetune import *
 import open_clip
 def get_norm_constants(which_img_norm: str = 'imagenet'):
     print('normalization method: ',which_img_norm)
@@ -39,7 +40,7 @@ def get_eval_transforms(
 
 
 def get_encoder(model_name,which_img_norm='imagenet'):
-    roo_path='/kaggle/working/PanDerm_Weights/'
+    roo_path='PanDerm_Weights/'
     # which_img_norm='imagenet'
     print('loading model checkpoint')
 
