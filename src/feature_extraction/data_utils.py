@@ -32,23 +32,19 @@ def get_all_image_paths(root_dir, exts={'.jpg', '.jpeg', '.png', '.bmp', '.tiff'
     return image_paths
 
 
-def get_ham_paths(base_ham_path, part=1):
+def get_ham_paths(base_ham_path):
     HAM_part1 = os.path.join(base_ham_path,'HAM10000_images_part_1')
-    part1_len = len(os.listdir(HAM_part1))
-    print(f'Lengh of part1: {part1_len}')
-
     HAM_part2 = os.path.join(base_ham_path,'HAM10000_images_part_2')
-    part2_len = len(os.listdir(HAM_part2))
-    print(f'Lengh of part2: {part2_len}')
 
-    base_dir = HAM_part1
-    if part == 2:
-        base_dir = HAM_part2
+    part1_files = os.listdir(HAM_part1)
+    part2_files = os.listdir(HAM_part2)
 
     ham_pths = [
-            os.path.join(base_dir, fname)
-            for fname in os.listdir(base_dir)
-        ]
+        os.path.join(HAM_part1, fname) for fname in part1_files
+    ] + [
+        os.path.join(HAM_part2, fname) for fname in part2_files
+    ]
+
     return ham_pths
 
 def get_d7p_paths(base_d7p_path): 
@@ -92,3 +88,65 @@ def get_dmf_paths(base_dmf_path):
         if image_id+".png" in os.listdir(base_dmf_path+"/images")]
     
     return dmf_pths
+
+def simplify_diagnosis(label):
+    label = label.lower()
+    if 'melanoma' in label:
+        return 'melanoma'
+    elif 'nevus' in label:
+        return 'nevus'
+    else:
+        return label
+
+def merge_df(pre_df_path, meta, meta_attrs):
+    pre_df = pd.read_csv(pre_df_path)
+    df = pre_df.astype({col: np.float32 for col in pre_df.select_dtypes(include=[np.float64]).columns})
+    df = pd.merge(df, meta[meta_attrs], on='image_id', how='left')
+    return df
+
+
+def save_df(df, output_path, pre_df_path):
+    os.remove(pre_df_path)
+    df.to_csv(output_path, index=False)
+    print(f"Data saved to {output_path}")
+
+def create_ham_df(base_path, pre_df_path, output_path):
+    meta_ham= pd.read_csv(os.path.join(base_path,'HAM10000_metadata.csv'))
+    meta_ham.rename(columns={'dx': 'class'}, inplace=True)
+    
+    df = merge_df(pre_df_path, meta_ham, ['image_id', 'class', 'lesion_id'])
+    save_df(df, output_path, pre_df_path)
+
+def create_d7p_df(base_path, pre_df_path, output_path):
+    meta_d7p= pd.read_csv(os.path.join(base_path,'release_v0/meta/meta.csv'))
+    meta_d7p = meta_d7p[~meta_d7p['diagnosis'].isin(['lentigo', 'melanosis', 'miscellaneous'])]
+    meta_d7p.rename(columns={'case_num': 'image_id'}, inplace=True)
+    meta_d7p['class'] = meta_d7p['diagnosis'].apply(simplify_diagnosis)
+
+    df = merge_df(pre_df_path, meta_d7p, ['image_id', 'class'])
+    save_df(df, output_path, pre_df_path)
+
+
+def create_dmf_df(base_path, pre_df_path, output_path):
+    meta_dmf= pd.read_csv(os.path.join(base_path,'meta-dmf.csv'))
+    meta_dmf = meta_dmf[meta_dmf['image_id'] != 'B511b'] # B511b is a missed image in the dataset
+    meta_dmf.reset_index(inplace=True)
+    meta_dmf.rename(columns={'dx': 'class', 'dx_idx':'cell_type_idx'}, inplace=True)
+
+    pre_df = pd.read_csv(pre_df_path)
+    pre_df.rename(columns={'image_id': 'image_idx'}, inplace=True)
+    df = pre_df.astype({col: np.float32 for col in pre_df.select_dtypes(include=[np.float64]).columns})
+    df = pd.merge(df, meta_dmf[['image_id', 'class', 'cell_type_idx']], right_index=True, left_index=True)
+    
+    save_df(df, output_path, pre_df_path)
+
+
+def create_df(base_path, data_name, pre_df_path, output_path):
+    if data_name == 'ham':
+        create_ham_df(base_path)
+    elif data_name == 'd7p':
+        create_d7p_df(base_path, pre_df_path, output_path)
+    elif data_name == 'dmf':
+        create_dmf_df(base_path, pre_df_path, output_path)
+    else:
+        raise ValueError(f"Unsupported dataset name: {data_name}")
