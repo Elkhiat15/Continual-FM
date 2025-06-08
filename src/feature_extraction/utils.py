@@ -73,11 +73,11 @@ def save_embeddings_in_batches_as_csv(image_paths, embedder, batch_size=32, outp
 
 def extract_features(rslt_dict, start, end, batch_size, model_name, data_name, output_csv):
     
-    if model_name == 'PanDerm':
+    if model_name == 'panderm':
         embedder = PanDermImageEmbedder() 
-    elif model_name == 'derm-foundation':
+    elif model_name == 'derm':
         embedder = DermImageEmbedder() 
-    elif model_name == 'vit':
+    elif model_name == 'clip':
         embedder = CLIPImageEmbedder()    
     else:
         print("please choose a corect model name (PanDerm or derm-foundation)")

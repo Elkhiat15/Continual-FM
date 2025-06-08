@@ -23,19 +23,16 @@ def get_image_paths(data_name, base_path):
         raise ValueError("Unknown data name. Use 'd7p', 'dmf', or 'ham'.")
     
 def create_df_paths(model_name, data_name):
-    prefix = ''
+    if model_name not in ['panderm', 'derm', 'clip']:
+        raise ValueError("Unknown model name. Use 'panderm', 'derm', or 'clip'.")
+    if data_name not in ['d7p', 'dmf', 'ham']:
+        raise ValueError("Unknown data name. Use 'd7p', 'dmf', or 'ham'.")
+    
+    prefix = model_name
     suffix = data_name
-    if model_name == 'PanDerm':
-         prefix = 'panderm'
-    elif model_name == 'derm-foundation':
-         prefix = 'derm'
-    elif model_name == 'vit':
-        prefix = 'clip'
-    else:
-        raise ValueError("Unknown model name. Use 'PanDerm', 'derm-foundation', or 'vit'.")
     
     aux_path = os.path.join('outputs', f'{prefix}_{suffix}_pre.csv')
-    output_path = os.path.join('outputs', f'{prefix}_{suffix}_.csv')
+    output_path = os.path.join('outputs', f'{prefix}_{suffix}.csv')
 
     return aux_path, output_path
 
@@ -50,7 +47,7 @@ def extract_and_save(model_name, data_name, start=0, end = None, batch_size = 10
         rslt_dict = pths,
         start=start, end = end,
         batch_size = batch_size, 
-        model_name = model_name, ## Options: 'PanDerm', 'derm-foundation', 'vit'
+        model_name = model_name, ## Options: 'panderm', 'derm', 'clip'
         data_name = data_name, ## Options: 'ham', 'd7p', 'dmf'
         output_csv = aux_path)
     
