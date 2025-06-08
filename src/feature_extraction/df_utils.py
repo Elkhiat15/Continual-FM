@@ -12,13 +12,13 @@ def get_base_path(data_name):
     else:
         raise ValueError("Unknown data name. Use 'd7p', 'dmf', or 'ham'.")
         
-def get_image_paths(data_name, base_path, part=1):
+def get_image_paths(data_name, base_path):
     if data_name == 'd7p':
         return get_d7p_paths(base_path)
     elif data_name == 'dmf':
         return get_dmf_paths(base_path)
     elif data_name == 'ham':
-        return get_ham_paths(base_path, part=part)  # Adjust part as needed
+        return get_ham_paths(base_path) 
     else:
         raise ValueError("Unknown data name. Use 'd7p', 'dmf', or 'ham'.")
     
@@ -43,7 +43,7 @@ def create_df_paths(model_name, data_name):
 def extract_and_save(model_name, data_name, start=0, end = None, batch_size = 100):
     
     base_path = get_base_path(data_name)
-    pths = get_image_paths(data_name, base_path, part=1) # part attribute is only for HAM dataset as it has two parts
+    pths = get_image_paths(data_name, base_path) 
     aux_path, output_path = create_df_paths(model_name, data_name)
    
     extract_features(
