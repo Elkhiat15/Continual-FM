@@ -23,16 +23,13 @@ def get_image_paths(data_name, base_path):
         raise ValueError("Unknown data name. Use 'd7p', 'dmf', or 'ham'.")
     
 def create_df_paths(model_name, data_name):
-    prefix = ''
+    if model_name not in ['panderm', 'derm', 'clip']:
+        raise ValueError("Unknown model name. Use 'panderm', 'derm', or 'clip'.")
+    if data_name not in ['d7p', 'dmf', 'ham']:
+        raise ValueError("Unknown data name. Use 'd7p', 'dmf', or 'ham'.")
+    
+    prefix = model_name
     suffix = data_name
-    if model_name == 'PanDerm':
-         prefix = 'panderm'
-    elif model_name == 'derm-foundation':
-         prefix = 'derm'
-    elif model_name == 'vit':
-        prefix = 'clip'
-    else:
-        raise ValueError("Unknown model name. Use 'PanDerm', 'derm-foundation', or 'vit'.")
     
     aux_path = os.path.join('outputs', f'{prefix}_{suffix}_pre.csv')
     output_path = os.path.join('outputs', f'{prefix}_{suffix}_.csv')
