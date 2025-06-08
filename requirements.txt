@@ -10,6 +10,7 @@ tqdm
 tensorflow
 huggingface_hub
 Pillow
+python-dotenv
 timm==0.9.16
 h5py
 PyYAML
