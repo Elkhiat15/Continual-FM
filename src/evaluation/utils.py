@@ -1,9 +1,13 @@
+import torch
+import random
+import torch.nn as nn
 import numpy as np
 from scipy.spatial.distance import euclidean
 from sklearn.preprocessing import StandardScaler
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.decomposition import PCA
 from src.evaluation.projection import FrozenRandomProjection
+from src.evaluation.hyperbolic import HyperbolicClassifier
 
 def get_prototypes(X_train, y_train):
     class_mean_vectors = {}
@@ -45,3 +49,12 @@ def apply_PCA(X_train, X_test):
 def get_task_data(X, y, task_classes):
     mask = np.isin(y, task_classes)
     return X[mask], y[mask]
+
+def run_hyper_experiment(X_train, y_train, X_test, y_test):
+   
+    model = HyperbolicClassifier(X_train.shape[1], 7)
+    optimizer = torch.optim.Adam(model.parameters(), lr=2e-4)
+    loss_fn = nn.CrossEntropyLoss()
+    model.train_model(torch.tensor(X_train), torch.tensor(y_train, dtype=torch.long), optimizer, loss_fn, device='cpu', epochs=200, batch_size=128)
+    model.test_model(torch.tensor(X_test), torch.tensor(y_test, dtype=torch.long), device='cpu', batch_size=128)
+

@@ -5,14 +5,13 @@ import torch.nn as nn
 from geoopt import ManifoldParameter, PoincareBall
 
 
-seed = 15
-random.seed(seed)
-np.random.seed(seed)
-torch.manual_seed(seed)
-
 class HyperbolicClassifier(nn.Module):
     def __init__(self, embed_dim, num_classes=7, manifold=None):
         super().__init__()
+        seed = 42
+        random.seed(seed)
+        np.random.seed(seed)
+        torch.manual_seed(seed)
         self.manifold = manifold or PoincareBall()
         self.prototypes = ManifoldParameter(
             torch.randn(num_classes, embed_dim) * 1e-3,
@@ -67,8 +66,8 @@ class HyperbolicClassifier(nn.Module):
             
             avg_loss = total_loss / total
             accuracy = correct / total * 100
-            if (epoch + 1) % 20 == 0 or epoch == 0 or epoch == epochs - 1:
-                print(f"Epoch {epoch+1}/{epochs} - Loss: {avg_loss:.4f} - Accuracy: {accuracy:.2f}%")
+            # if (epoch + 1) % 20 == 0 or epoch == 0 or epoch == epochs - 1:
+            #     print(f"Epoch {epoch+1}/{epochs} - Loss: {avg_loss:.4f} - Accuracy: {accuracy:.2f}%")
             
     def test_model(self, embeddings, labels, device='cpu', batch_size=64):
         """
