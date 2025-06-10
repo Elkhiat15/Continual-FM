@@ -17,8 +17,14 @@ def run_experiment(X_train, y_train, X_test, y_test, model_name = 'panderm', dat
         tasks = d7p_tasks
     elif data_name == 'dmf':
         tasks = dmf_tasks
+
+    
     print("\n\n$$$$$$$$$$$$$$$ Results with: MLP $$$$$$$$$$$$$$$")
-    train_MLP(tasks, X_train, y_train, X_test, y_test)
+    if data_name == 'ham':
+        X_train_norm, X_test_norm = normalize_data(X_train, X_test)
+        train_MLP(tasks, X_train_norm, y_train, X_test_norm, y_test)
+    else:
+        train_MLP(tasks, X_train, y_train, X_test, y_test)
 
     print("\n\n$$$$$$$$$$$$$$$ Results with: NMC Variations $$$$$$$$$$$$$$$")
     print("\n\n======= Results with: Base NMC ======")
