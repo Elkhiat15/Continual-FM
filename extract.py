@@ -8,8 +8,8 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Extract features from dataset using a given model.')
     
-    parser.add_argument('--model_name', type=str, required=True, help='Model name (e.g. PanDerm, clip, derm).')
     parser.add_argument('--data_name', type=str, required=True, help='Dataset name (e.g. ham, d7p, dmf).')
+    parser.add_argument('--model_name', type=str, required=True, help='Model name (e.g. PanDerm, clip, derm).')
     # parser.add_argument('--start', type=int, default=0, help='Start index for image slicing.')
     # parser.add_argument('--end', type=int, default=None, help='End index for image slicing.')
     # parser.add_argument('--batch_size', type=int, default=100, help='Batch size for processing.')
@@ -26,7 +26,8 @@ if __name__ == '__main__':
 
 # Example usage:
 #     python extract.py \
-#   --model_name panderm \
 #   --data_name dmf \
+#   --model_name panderm \
+
 
 
