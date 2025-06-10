@@ -53,4 +53,9 @@ def run_experiment(X_train, y_train, X_test, y_test, model_name = 'panderm', dat
     X_train_norm_pca, X_test_norm_pca = apply_PCA(X_train_norm, X_test_norm)
     class_prototypes_norm_pca = get_prototypes(X_train_norm_pca, y_train)
     get_NMC_accuracies(X_test_norm_pca, y_test, class_prototypes_norm_pca)
-    
+
+    print("\n\n======= Results with: Hyperbolic Projections ======")
+    run_hyper_experiment(X_train, y_train, X_test, y_test)
+
+    print("\n\n======= Results with: Hyperbolic Projections & Norm ======")
+    run_hyper_experiment(X_train_norm, y_train, X_test_norm, y_test)
