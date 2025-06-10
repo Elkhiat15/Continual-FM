@@ -47,7 +47,11 @@ You have **two options** for obtaining the image embeddings needed for evaluatio
 
 #### Option 2: Extract Features Yourself
 
-You can extract embeddings for any dataset and model combination using the `extract.py` script.
+- Get a [Huggingface Token](https://huggingface.co/) to be able to use [Derm](https://huggingface.co/google/derm-foundation) and [CLIP](https://huggingface.co/openai/clip-vit-large-patch14) models.
+
+- rename `.env.example` to `.env` and put your token as `HF_TOKEN=<your-token>` 
+
+-  You can extract embeddings for any dataset and model combination using the `extract.py` script.
 
 ##### Script: `extract.py`
 
