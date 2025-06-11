@@ -17,7 +17,7 @@ Our experiments are conducted on three publicly available dermatology datasets. 
 
 | Dataset | Download | Source | Description                                                                                   |
 |---------|--------|--------|---------------------------------------------------------------------------------------|
-| **HAM10000 (HAM)** | [download]([https://derm.cs.sfu.ca/Welcome.html](https://www.kaggle.com/datasets/mualaa01/ham-dataset)  | [source](https://www.nature.com/articles/sdata2018161)| Dermoscopic images of 7 pigmented lesion classes.                         |
+| **HAM10000 (HAM)** | [download](https://www.kaggle.com/datasets/mualaa01/ham-dataset)  | [source](https://www.nature.com/articles/sdata2018161)| Dermoscopic images of 7 pigmented lesion classes.                         |
 | **Dermofit (DMF)** | [download](https://www.kaggle.com/datasets/jfayyad/dmf-skin)   | [source](https://licensing.edinburgh-innovations.ed.ac.uk/product/dermofit-image-library)| High-quality skin lesion images collected under standardised conditions with internal colour standards.                                 |
 | **Derm7pt (D7P)**  | [download](https://www.kaggle.com/datasets/jfayyad/d7p-dataset)    | [source](https://derm.cs.sfu.ca/Welcome.html)| Dermoscopic dataset designed to follow the 7-point skin lesion malignancy checklist.          |
 
