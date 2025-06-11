@@ -7,6 +7,21 @@ Class-Incremental Learning (CIL) aims to learn new classes over time without for
 
 ---
 
+---
+
+# Data & Models
+
+## Datasets
+
+Our experiments are conducted on three publicly available dermatology datasets. Each dataset is partitioned into tasks with mutually exclusive class labels.
+
+| Dataset | Download | Source | Description                                                                                   |
+|---------|--------|--------|---------------------------------------------------------------------------------------|
+| **HAM10000 (HAM)** | [download]([https://derm.cs.sfu.ca/Welcome.html](https://www.kaggle.com/datasets/mualaa01/ham-dataset)  | [source](https://www.nature.com/articles/sdata2018161)| Dermoscopic images of 7 pigmented lesion classes.                         |
+| **Dermofit (DMF)** | [download](https://www.kaggle.com/datasets/jfayyad/dmf-skin)   | [source](https://licensing.edinburgh-innovations.ed.ac.uk/product/dermofit-image-library)| High-quality skin lesion images collected under standardised conditions with internal colour standards.                                 |
+| **Derm7pt (D7P)**  | [download](https://www.kaggle.com/datasets/jfayyad/d7p-dataset)    | [source](https://derm.cs.sfu.ca/Welcome.html)| Dermoscopic dataset designed to follow the 7-point skin lesion malignancy checklist.          |
+
+
 # How To Run
 
 ### Setup Instructions
@@ -49,9 +64,9 @@ You have **two options** for obtaining the image embeddings needed for evaluatio
 
 - Get a [Huggingface Token](https://huggingface.co/) to be able to use [Derm](https://huggingface.co/google/derm-foundation) and [CLIP](https://huggingface.co/openai/clip-vit-large-patch14) models.
 
-- rename `.env.example` to `.env` and put your token as `HF_TOKEN=<your-token>` 
+- Rename `.env.example` to `.env` and put your token as `HF_TOKEN=<your-token>` 
 
--  You can extract embeddings for any dataset and model combination using the `extract.py` script.
+- You can extract embeddings for any dataset and model combination using the `extract.py` script.
 
 ##### Script: `extract.py`
 
