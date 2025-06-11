@@ -7,8 +7,6 @@ Class-Incremental Learning (CIL) aims to learn new classes over time without for
 
 ---
 
----
-
 # Data & Models
 
 ## Datasets
@@ -21,6 +19,20 @@ Our experiments are conducted on three publicly available dermatology datasets. 
 | **Dermofit (DMF)** | [download](https://www.kaggle.com/datasets/jfayyad/dmf-skin)   | [source](https://licensing.edinburgh-innovations.ed.ac.uk/product/dermofit-image-library)| High-quality skin lesion images collected under standardised conditions with internal colour standards.                                 |
 | **Derm7pt (D7P)**  | [download](https://www.kaggle.com/datasets/jfayyad/d7p-dataset)    | [source](https://derm.cs.sfu.ca/Welcome.html)| Dermoscopic dataset designed to follow the 7-point skin lesion malignancy checklist.          |
 
+
+---
+
+### Foundation Models
+
+All models are used as **frozen feature extractors** without further fine-tuning. Extracted embeddings are later used to train lightweight classifiers incrementally.
+
+| Model        | Source / Description                                                                                              |
+|--------------|--------------------------------------------------------------------------------------------------------------------|
+| **Derm**     | [Google Derm Foundation Model](https://huggingface.co/google/derm-foundation), trained on over 400 skin conditions. |
+| **PanDerm**  | [PanDerm](https://github.com/SiyuanYan1/PanDerm), pretrained on millions of clinical and dermoscopic dermatology images. |
+| **CLIP**     | [CLIP ViT-L/14](https://huggingface.co/openai/clip-vit-large-patch14), pretrained on large-scale image-text pairs.  |
+
+---
 
 # How To Run
 
