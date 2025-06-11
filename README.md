@@ -70,13 +70,40 @@ You have **two options** for obtaining the image embeddings needed for evaluatio
 
 - Once downloaded, place the files inside the `outputs/` directory and skip to the Run Experiment section.
 
+#### 📂 Expected Directory Structure:
+```bash
+outputs/
+├── derm_ham.csv
+├── panderm_ham.csv
+.
+.
+└── clip_d7p.csv
+
+```
 ---
 
 #### Option 2: Extract Features Yourself
 
 - Get a [Huggingface Token](https://huggingface.co/) to be able to use [Derm](https://huggingface.co/google/derm-foundation) and [CLIP](https://huggingface.co/openai/clip-vit-large-patch14) models.
 
-- Rename `.env.example` to `.env` and put your token as `HF_TOKEN=<your-token>` 
+- Rename `.env.example` to `.env` and put your token as `HF_TOKEN=<your-token>`
+
+- Download the three datasets from the Kaggle link above and place each in its corresponding directory.    
+  Ensure the directory structure matches the following:
+
+```bash
+data/
+├── ham/
+│   └── HAM10000_images_part_1/
+│   └── HAM10000_images_part_2/
+│   . 
+│   └── HAM10000_metadata
+├── dmf/
+│   └── DMF/
+└── d7p/
+    └── release_v0/
+
+```
 
 - You can extract embeddings for any dataset and model combination using the `extract.py` script.
 
@@ -143,4 +170,16 @@ If you have already downloaded our embedding files and put them in the right pla
 python run_experiment.py \
     --data_name dmf \
     --model_name derm
+```
+---
+
+# Citation (To be Modified)
+
+```bibtex
+@article{ ... ,
+  title={Foundation Models as Class-Incremental Learners for Dermatological Image Classification},
+  author={},
+  year={2025},
+...
+}
 ```
