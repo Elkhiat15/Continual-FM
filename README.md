@@ -68,7 +68,7 @@ You have **two options** for obtaining the image embeddings needed for evaluatio
 - Download all precomputed embeddings (`.csv` files) for all datasets and models directly from this link: [Download Embeddings](https://www.kaggle.com/datasets/mohammedelkhiat/foundation-models-embeddings/data)
 
 
-- Once downloaded, place the files inside the `outputs/` directory and skip to the [Run Experiment](#-run-experiment) section.
+- Once downloaded, place the files inside the `outputs/` directory and skip to the [Run Experiment](#run-experiment) section.
 
 #### 📂 Expected Directory Structure:
 ```bash
