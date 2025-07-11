@@ -13,11 +13,12 @@ Class-Incremental Learning (CIL) aims to learn new classes over time without for
 
 Our experiments are conducted on three publicly available dermatology datasets. Each dataset is partitioned into tasks with mutually exclusive class labels.
 
-| Dataset | Download | Source | Description                                                                                   |
-|---------|--------|--------|---------------------------------------------------------------------------------------|
-| **HAM10000 (HAM)** | [download](https://www.kaggle.com/datasets/mualaa01/ham-dataset)  | [source](https://www.nature.com/articles/sdata2018161)| Dermoscopic images of 7 pigmented lesion classes.                         |
-| **Dermofit (DMF)** | [download](https://www.kaggle.com/datasets/jfayyad/dmf-skin)   | [source](https://licensing.edinburgh-innovations.ed.ac.uk/product/dermofit-image-library)| High-quality skin lesion images collected under standardised conditions with internal colour standards.                                 |
-| **Derm7pt (D7P)**  | [download](https://www.kaggle.com/datasets/jfayyad/d7p-dataset)    | [source](https://derm.cs.sfu.ca/Welcome.html)| Dermoscopic dataset designed to follow the 7-point skin lesion malignancy checklist.          |
+| Dataset               | Source                                                                                              | Description                                                                                   |
+|-----------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **HAM10000 (HAM)**    | [Download](https://www.nature.com/articles/sdata2018161)                                              | Dermoscopic images of 7 pigmented lesion classes.                                             |
+| **Dermofit (DMF)**    | [Download](https://licensing.edinburgh-innovations.ed.ac.uk/product/dermofit-image-library)           | High-quality skin lesion images collected under standardised conditions with internal colour standards. |
+| **Derm7pt (D7P)**     | [Download](https://derm.cs.sfu.ca/Welcome.html)                                                       | Dermoscopic dataset designed to follow the 7-point skin lesion malignancy checklist.          |
+
 
 
 ---
