@@ -101,8 +101,14 @@ data/
 │   └── HAM10000_metadata
 ├── dmf/
 │   └── DMF/
+│        └── images/
+│        └── meta-dmf.csv
 └── d7p/
     └── release_v0/
+        └── images/
+        └── meta/
+            └── meta.csv
+
 
 ```
 
