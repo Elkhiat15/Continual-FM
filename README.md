@@ -89,7 +89,7 @@ outputs/
 
 - Rename `.env.example` to `.env` and put your token as `HF_TOKEN=<your-token>`
 
-- Download the three datasets from the [Kaggle links above](#datasets) and place each in its corresponding directory.    
+- Download the three datasets from the [links above](#datasets) and place each in its corresponding directory.    
   Ensure the directory structure matches the following:
 
 ```bash
