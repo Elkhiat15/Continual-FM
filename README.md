@@ -170,13 +170,15 @@ python run_experiment.py \
 
 ---
 
-# Citation (To be Modified)
+# Citation
 
 ```bibtex
-@article{ ... ,
-  title={Foundation Models as Class-Incremental Learners for Dermatological Image Classification},
-  author={},
-  year={2025},
-...
+@inproceedings{
+elkhayat2025foundation,
+title={Foundation Models as Class-Incremental Learners for Dermatological Image Classification},
+author={Mohamed Elkhayat and Mohamed Mahmoud and Jamil Fayyad and Nourhan Bayasi},
+booktitle={MICCAI Student Board EMERGE Workshop: Empowering Medical Information Computing and Research through Early-career Guidance and Expertise},
+year={2025},
+url={https://openreview.net/forum?id=FyvpNwaMHk}
 }
 ```
