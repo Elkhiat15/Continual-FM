@@ -1,5 +1,7 @@
 # Continual-FM
-Foundation Models as Class-Incremental Learners for Dermatological Image Classification
+Foundation Models as Class-Incremental Learners for Dermatological Image Classification 
+[[`Arxiv Paper`](https://arxiv.org/abs/2507.14050)]
+[[`Cite`](#citation)]
 
 # Abstract 
 
